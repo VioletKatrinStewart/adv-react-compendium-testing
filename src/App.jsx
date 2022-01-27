@@ -1,8 +1,8 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import { getFilms } from './services/films';
-import FilmList from '../components/FilmList/FilmList';
-import Controls from '../components/Controls/Controls';
+import FilmList from './components/FilmList/FilmList';
+import Controls from './components/Controls/Controls';
 
 function App() {
   const [films, setFilms] = useState([]);
@@ -11,7 +11,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getFilms();
-      setFilms(data.results);
+      console.log(data);
+      setFilms(data);
       setLoading(false);
     };
     if (loading) {
@@ -23,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Film's By Studio Ghibli</h1>
+      <h1>Films By Studio Ghibli</h1>
       <Controls />
       <FilmList films={films} loading={loading} />
     </div>
