@@ -7,6 +7,7 @@ import Controls from './components/Controls/Controls';
 function App() {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,13 +21,20 @@ function App() {
     }
   }, [loading]);
 
+  function filterFilms() {
+    const filteredFilms = films.filter((films) =>
+      films.title.toLowerCase().includes(query.toLowerCase())
+    );
+    return filteredFilms;
+  }
+  console.log(filterFilms());
   if (loading) return <h1>LOADING</h1>;
 
   return (
     <div className="App">
       <h1>Films By Studio Ghibli</h1>
-      <Controls />
-      <FilmList films={films} loading={loading} />
+      <Controls query={query} setQuery={setQuery} />
+      <FilmList films={filterFilms()} loading={loading} setLoading={setLoading} />
     </div>
   );
 }
