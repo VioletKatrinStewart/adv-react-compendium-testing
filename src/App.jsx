@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getFilms();
-      console.log(data);
       setFilms(data);
       setLoading(false);
     };
@@ -27,7 +26,7 @@ function App() {
     );
     return filteredFilms;
   }
-  console.log(filterFilms());
+
   if (loading) return <h1>loading</h1>;
 
   return (
