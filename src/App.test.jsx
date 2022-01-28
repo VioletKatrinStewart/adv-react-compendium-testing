@@ -504,7 +504,7 @@ const server = setupServer(
 beforeAll(() => server.listen());
 afterAll(() => server.close());
 
-test.only('the App renders in a loading state', async () => {
+test('the App renders in a loading state', async () => {
   render(<App />);
 
   const heading = screen.getByRole('heading');
@@ -515,19 +515,7 @@ test.only('the App renders in a loading state', async () => {
   await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
 });
 
-//OLD TESTS FROM OTHER ASSIGNMENT
-//test 1 for loading state
-test('the film list renders in a loading state', async () => {
-  render(<App />);
-  const heading = screen.getByRole('heading');
-  expect(screen.getByText(/loading/i)).toBeInTheDocument();
-  expect(heading).toBeInTheDocument();
-
-  await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
-});
-
-// test 2 test that the api is sending back all film names
-test('the api is sending back first film', async () => {
+test('the films are loaded onto the page', async () => {
   render(<App />);
 
   const loading = screen.getByText(/loading/i);
@@ -554,3 +542,43 @@ test('search can find films typed in', async () => {
 
   expect(hasSameName).toBe(true);
 });
+
+//OLD TESTS FROM OTHER ASSIGNMENT
+//test 1 for loading state
+// test('the film list renders in a loading state', async () => {
+//   render(<App />);
+//   const heading = screen.getByRole('heading');
+//   expect(screen.getByText(/loading/i)).toBeInTheDocument();
+//   expect(heading).toBeInTheDocument();
+
+//   await waitForElementToBeRemoved(() => screen.getByText(/loading/i));
+// });
+
+// // test 2 test that the api is sending back all film names
+// test('the api is sending back first film', async () => {
+//   render(<App />);
+
+//   const loading = screen.getByText(/loading/i);
+//   expect(loading).toBeInTheDocument();
+
+//   const films = await screen.findByText(/castle in the sky/i);
+//   expect(films).toBeInTheDocument();
+// });
+
+// test('search can find films typed in', async () => {
+//   render(<App />);
+//   const searchbar = await screen.findByRole('textbox');
+
+//   const filmName = 'ponyo';
+//   userEvent.type(searchbar, filmName);
+
+//   const films = await screen.findAllByAltText(filmName, { exact: false });
+
+//   const resultNames = films.map((film) => film.alt);
+
+//   const handleNameCheck = (name) => name.toLowerCase().includes(filmName);
+
+//   const hasSameName = resultNames.every(handleNameCheck);
+
+//   expect(hasSameName).toBe(true);
+// });
