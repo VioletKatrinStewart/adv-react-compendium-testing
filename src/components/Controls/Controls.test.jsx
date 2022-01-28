@@ -503,7 +503,7 @@ const server = setupServer(
 beforeAll(() => server.listen());
 afterAll(() => server.close());
 
-test.only('the search control loads', async () => {
+test('the search control loads', async () => {
   render(<Controls />);
   const searchInput = await screen.findByRole('textbox');
   expect(searchInput).toBeInTheDocument();
