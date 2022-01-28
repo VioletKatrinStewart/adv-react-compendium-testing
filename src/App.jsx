@@ -28,7 +28,7 @@ function App() {
     return filteredFilms;
   }
   console.log(filterFilms());
-  if (loading) return <h1>LOADING</h1>;
+  if (loading) return <h1>loading</h1>;
 
   return (
     <div className="App">
