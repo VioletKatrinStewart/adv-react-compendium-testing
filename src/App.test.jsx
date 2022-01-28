@@ -32,10 +32,11 @@ test('search can find films typed in', async () => {
 
   const films = await screen.findAllByAltText(filmName, { exact: false });
 
-  const resultNames = films.map((film) => film.textContent);
+  const resultNames = films.map((film) => film.alt);
 
   const handleNameCheck = (name) => name.toLowerCase().includes(filmName);
 
-  const hasSanmeName = resultNames.every(handleNameCheck);
-  expect(hasSanmeName).toBe(true);
+  const hasSameName = resultNames.every(handleNameCheck);
+
+  expect(hasSameName).toBe(true);
 });
